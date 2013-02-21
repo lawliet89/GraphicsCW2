@@ -48,17 +48,18 @@ OrthographicCamera::OrthographicCamera(Vec3f centre, Vec3f direction, Vec3f up, 
 	}
 
 	// calculate horizontal
-	Vec3f::Cross3(horizontal, this -> up, this -> direction);
+	Vec3f::Cross3(horizontal, this -> direction, this -> up);
 	horizontal.Normalize();
 }
 
-
+// point is in the range (0,0) -> (1,1)
+// i.e. centre of the camera is at (0.5, 0.5)
 Ray OrthographicCamera::generateRay(Vec2f point)
 {
 	// Calculate origin on the camera plane
 	Vec3f origin(centre);
-	origin += horizontal * ( point.x() * size) ;
-	origin += up * ( point.y() * size );
+	origin += horizontal * ( (point.x() - 0.5 ) * size) ;
+	origin += up * ( ( point.y() - 0.5 ) * size );
 
 	return Ray(direction, origin);
 
