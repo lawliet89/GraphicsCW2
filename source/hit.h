@@ -12,7 +12,8 @@ class Hit {
 public:
 
   // CONSTRUCTOR & DESTRUCTOR
-  Hit(float _t, Vec3f c) { t = _t; color = c; }
+  Hit(): t(0) {}
+  Hit(float _t, Vec3f c) : t(_t), color(c) { }
   Hit(const Hit &obj): t(obj.t), color(obj.color) {}
   ~Hit() {}
 
