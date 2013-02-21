@@ -80,6 +80,42 @@ int main(int argc, char** argv) {
 void renderRGBImage(SceneParser &scene, Image &image) {
 
   // TODO: renderRGBImage
+	// Objects in scene
+	Group *objects = scene.getGroup();
+	// Get the camera
+	Camera *camera = scene.getCamera();
+	// Get background colour
+	Vec3f background = scene.getBackgroundColor();
+
+	int width = image.Width();
+	int height = image.Height();
+
+	for (int x = 0; x < width; x++){
+		for (int y = 0; y < height; y++){
+			// Calculate x and y index
+			float xIndex = ((float) x)/width;
+			float yIndex = ((float) y)/height;
+
+			// Get a ray from the camera
+			Ray ray = camera -> generateRay(Vec2f(xIndex, yIndex));
+
+			// Empty Hit object
+			Hit hit;
+
+			// Check for intersections
+			bool intersect = objects -> intersect(ray, hit);
+
+			// There is an intersection
+			if (intersect){
+				image.SetPixel(x,y, hit.getColor());
+			}
+			else{
+				// Background colour
+				image.SetPixel(x,y, background);
+			}
+
+		}
+	}
 }
 
 // Render an image showing the depth of objects from the camera.
