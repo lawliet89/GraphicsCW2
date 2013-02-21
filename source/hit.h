@@ -13,6 +13,7 @@ public:
 
   // CONSTRUCTOR & DESTRUCTOR
   Hit(float _t, Vec3f c) { t = _t; color = c; }
+  Hit(const Hit &obj): t(obj.t), color(obj.color) {}
   ~Hit() {}
 
   // ACCESSORS
@@ -21,6 +22,15 @@ public:
 
   // MODIFIER
   void set(float _t, Vec3f c) { t = _t; color = c; }
+
+  // Assignment operator
+  Hit &operator=(const Hit&obj){
+	  if (this != &obj){
+		  t = obj.t;
+	  	  color = obj.color;
+	  }
+	  return *this;
+  }
 
 private:
 
