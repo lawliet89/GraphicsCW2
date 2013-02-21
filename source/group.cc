@@ -37,8 +37,10 @@ bool Group::intersect(const Ray &r, Hit &h)
 		bool test = (*it) -> intersect(r,temp);
 		if (test){	// Intersection found!
 			result = true;
-			t = min(temp.getT(), t);
-			colour = temp.getColor();
+			if (temp.getT() < t){
+				t = temp.getT();
+				colour = temp.getColor();
+			}
 		}
 	}
 
