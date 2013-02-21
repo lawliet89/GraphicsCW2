@@ -34,9 +34,17 @@ bool Sphere::intersect(const Ray &r, Hit &h)
 	if (determinant < 0)
 		return false;
 
-	//Real roots? Find intersection -- we want the smaller one
-	float t = min( (-1*b + sqrt(determinant)), (-1*b - sqrt(determinant)) );
-	h.set(t, colour);
+	//Real roots? Find intersection -- we want the smaller one, but still positive
+	float t1 = (-1*b + sqrt(determinant));
+	float t2 = (-1*b - sqrt(determinant));
+
+	if (t1 < 0 ) t1 = INFINITY;	// behind camera plane
+	if (t2 < 0 ) t2 = INFINITY;	// behind camera plane
+
+	if (t1 == INFINITY && t2 == INFINITY)
+		return false;	// sphere is completely behind camera plane
+
+	h.set( min (t1, t2) , colour);
 
 	return true;
 }
