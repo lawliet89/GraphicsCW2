@@ -13,6 +13,7 @@ OrthographicCamera::OrthographicCamera(Vec3f centre, Vec3f direction, Vec3f up, 
 	// normalise input up
 	up.Normalize();
 
+	cout << "Camera Stats:\nSize: " << size << "\n";
 	cout << "Centre: " << this -> centre << "\n";
 	cout << "Direction: " << this -> direction << "\n";
 	cout << "Provided Up: " << up << "\n";
