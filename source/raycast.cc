@@ -87,6 +87,7 @@ void renderRGBImage(SceneParser &scene, Image &image) {
 	// Get background colour
 	Vec3f background = scene.getBackgroundColor();
 
+	// Image width, and height
 	int width = image.Width();
 	int height = image.Height();
 
@@ -122,5 +123,56 @@ void renderRGBImage(SceneParser &scene, Image &image) {
 void renderDepthImage(SceneParser &scene, Image &image) {
 
   // TODO: renderDepthImage
+	// Objects in scene
+	Group *objects = scene.getGroup();
+	// Get the camera
+	Camera *camera = scene.getCamera();
 
+	// Image width, and height
+	int width = image.Width();
+	int height = image.Height();
+
+	// Useful values
+	Vec3f black(0.f, 0.f, 0.f);
+	float difference = _depthMax - _depthMin;
+
+	for (int x = 0; x < width; x++){
+		for (int y = 0; y < height; y++){
+			// Calculate x and y index
+			float xIndex = ((float) x)/width;
+			float yIndex = ((float) y)/height;
+
+			// Get a ray from the camera
+			Ray ray = camera -> generateRay(Vec2f(xIndex, yIndex));
+
+			// Empty Hit object
+			Hit hit;
+
+			// Check for intersections
+			bool intersect = objects -> intersect(ray, hit);
+
+			// There is an intersection
+			if (intersect){
+				float colour;
+				float t = hit.getT();
+
+				// Calculate colour
+				if (t <= _depthMin)
+					colour = 1.f;	// white
+				else if (t >= _depthMax)
+					colour = 0.f;	// black
+				else{
+					// Grey
+					colour = (_depthMax - t)/difference;
+				}
+
+				image.SetPixel(x,y, Vec3f(colour, colour, colour));
+			}
+			else{
+				// Black colour
+				image.SetPixel(x,y, black);
+			}
+
+		}
+	}
 }
