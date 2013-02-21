@@ -28,6 +28,10 @@
 # PDT-specific
 #.buildpath
 
+.history/
+*.o
+*.exe
+raycast
 
 #################
 ## Visual Studio
