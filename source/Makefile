@@ -23,6 +23,9 @@ CXXFLAGS := -g -pedantic -std=c++0x -Wall -Wextra -Werror=return-type -Wno-reord
 CFLAGS  := -O2 -I. -c
 LDFLAGS := -lm
 
+SCENE_DIR := ../scenes/
+OUTPUT_DIR := ./output/
+
 #-------------------------------------------------------------------------------
 # ACTUAL TARGETS
 #-------------------------------------------------------------------------------
@@ -50,11 +53,11 @@ raycast.o: raycast.cc $(HEADER_LIST)
 #-------------------------------------------------------------------------------
 # PHONY TARGETS
 #-------------------------------------------------------------------------------
-.PHONY : clean again all git run debug windows
+.PHONY : clean again all git debug windows 1 2 3 4 5 6 run
 all: $(PROGRAM)
 
 clean:
-	rm -rf $(OBJ_LIST) $(PROGRAM) *~
+	rm -rf $(OBJ_LIST) $(PROGRAM) *~ $(OUTPUT_DIR)/*
 
 again:
 	make clean
@@ -64,10 +67,6 @@ git:
 	make
 	git add .
 	git commit -m "$(m)"
-
-run:
-	make
-	./$(PROGRAM)
 	
 debug:
 	make
@@ -76,3 +75,35 @@ debug:
 # start X server on Cygwin
 windows:
 	startxwin
+    
+1:
+	make
+	./$(PROGRAM) -input $(SCENE_DIR)scene$@.txt -size 200 200 -output $(OUTPUT_DIR)scene$@.ppm -depth 9 10 $(OUTPUT_DIR)depth$@.ppm
+	
+2:
+	make
+	./$(PROGRAM) -input $(SCENE_DIR)scene$@.txt -size 200 200 -output $(OUTPUT_DIR)scene$@.ppm -depth 8 12 $(OUTPUT_DIR)depth$@.ppm
+	
+3:
+	make
+	./$(PROGRAM) -input $(SCENE_DIR)scene$@.txt -size 200 200 -output $(OUTPUT_DIR)scene$@.ppm -depth 8 12 $(OUTPUT_DIR)depth$@.ppm
+	
+4:
+	make
+	./$(PROGRAM) -input $(SCENE_DIR)scene$@.txt -size 200 200 -output $(OUTPUT_DIR)scene$@.ppm -depth 13 16 $(OUTPUT_DIR)depth$@.ppm
+	
+5:
+	make
+	./$(PROGRAM) -input $(SCENE_DIR)scene$@.txt -size 300 300 -output $(OUTPUT_DIR)scene$@.ppm -depth 1 7 $(OUTPUT_DIR)depth$@.ppm
+	
+6:
+	make
+	#./$(PROGRAM) -input $(SCENE_DIR)scene$@.txt -size 300 300 -output $(OUTPUT_DIR)scene$@.ppm -depth 1 7 $(OUTPUT_DIR)depth$@.ppm
+
+run:
+	make 1
+	make 2
+	make 3
+	make 4
+	make 5
+	make 6
