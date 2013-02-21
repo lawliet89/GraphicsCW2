@@ -24,8 +24,7 @@ void Group::addObject(int index, Object3D *obj) {
 bool Group::intersect(const Ray &r, Hit &h)
 {
 
-  // YOUR CODE HERE.
-
+  // TODO: Group::intersect
 	return true;
 
 }

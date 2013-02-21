@@ -24,4 +24,5 @@ pydevOccurrenceIndicationColor=97,97,97
 searchResultIndicationColor=70,68,103
 secondaryIPColor=101,101,101
 spacesForTabs=true
+spellingEngine=org.eclipse.cdt.internal.ui.text.spelling.CSpellingEngine
 writeOccurrenceIndicationColor=148,133,103

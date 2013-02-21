@@ -1,7 +1,5 @@
 // Orthographic camera class.
 
-// Add any code you need here and in the corresponding .cc file.
-
 #ifndef ORTHOGRAPHIC_CAMERA_H_
 #define ORTHOGRAPHIC_CAMERA_H_
 
@@ -9,6 +7,8 @@
 
 class OrthographicCamera : public Camera{
 
+	float size;
+	Vec3f centre, direction, up, horizontal;
 
 public:
 

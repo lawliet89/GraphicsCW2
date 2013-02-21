@@ -79,13 +79,12 @@ int main(int argc, char** argv) {
 // Render a color image of objects in a scene.
 void renderRGBImage(SceneParser &scene, Image &image) {
 
-  // YOUR CODE HERE.
-
+  // TODO: renderRGBImage
 }
 
 // Render an image showing the depth of objects from the camera.
 void renderDepthImage(SceneParser &scene, Image &image) {
 
-  // YOUR CODE HERE.
+  // TODO: renderDepthImage
 
 }

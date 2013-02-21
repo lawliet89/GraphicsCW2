@@ -1,7 +1,6 @@
 #include "raycast.h"
 
-// Add any code you need here and in the corresponding header
-// file.
+// TODO: sphere class
 
 
 Sphere::Sphere()
