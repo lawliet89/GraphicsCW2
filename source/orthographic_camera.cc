@@ -47,7 +47,7 @@ OrthographicCamera::OrthographicCamera(Vec3f centre, Vec3f direction, Vec3f up, 
 
 	}
 
-	// calculate horizontal
+	// calculate horizontal - note the coursework uses a right handed coordinate system
 	Vec3f::Cross3(horizontal, this -> direction, this -> up);
 	horizontal.Normalize();
 
