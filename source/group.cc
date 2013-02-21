@@ -23,8 +23,28 @@ void Group::addObject(int index, Object3D *obj) {
 
 bool Group::intersect(const Ray &r, Hit &h)
 {
+	// TODO: Group::intersect
+	bool result = false;
 
-  // TODO: Group::intersect
-	return true;
+	// Let's create a temporary Hit object to get the minimum hit
+	Hit temp;
+
+	// Parameters of h to keep track of
+	float t = INFINITY;
+	Vec3f colour;
+
+	for (vector<Object3D*>::iterator it = objects.begin(); it != objects.end(); it++){
+		bool test = (*it) -> intersect(r,temp);
+		if (test){	// Intersection found!
+			result = true;
+			t = min(temp.getT(), t);
+			colour = temp.getColor();
+		}
+	}
+
+	if (result)
+		h.set(t, colour);
+
+	return result;
 
 }
