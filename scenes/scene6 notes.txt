@@ -1,0 +1,9 @@
+Scene 6 notes:
+    Sphere 1 is centred at (0,0,-1) and has a radius of 1. Since the camera is at (0,0,0) looking at z=1, then only the point (0,0,0) will appear.
+    i.e. only one red dot should appear.
+    
+    Sphere 2 clearly demonstrates the right handed coordinate system in use. Since x > 0
+    
+    Sphere 3 is nearer than zNear. So should render white in depth
+    
+    Sphere 4 is farther than zFar, so should render black in depth

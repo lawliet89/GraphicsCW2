@@ -1,0 +1,39 @@
+
+OrthographicCamera {
+    center 0 0 0 
+    direction 0 0 1
+    up 0 1 0 
+    size 4
+}
+
+Background { color 1 1 1 }
+
+Group {
+    num_objects 4
+
+    Material { diffuseColor 1 0 0 }
+    Sphere {
+	center 0 0 -1
+        radius 1 
+    }
+    
+    Material { diffuseColor 0 1 0 }
+    Sphere {
+	center 3 0 0
+        radius 2 
+    }
+    
+    Material { diffuseColor 0 0 1 }
+    Sphere {
+	center 0.25 0 0
+        radius 0.1 
+    }
+    
+    Material { diffuseColor 0.2 0.70980392156 0.89803921568 }
+    Sphere {
+	center 0 0 20
+        radius 1 
+    }
+    
+}
+

@@ -94,11 +94,11 @@ windows:
 	
 5:
 	make
-	./$(PROGRAM) -input $(SCENE_DIR)scene$@.txt -size 300 300 -output $(OUTPUT_DIR)scene$@.ppm -depth 1 7 $(OUTPUT_DIR)depth$@.ppm
+	./$(PROGRAM) -input $(SCENE_DIR)scene$@.txt -size 300 300 -output $(OUTPUT_DIR)scene$@.ppm -depth 0.1 2 $(OUTPUT_DIR)depth$@.ppm
 	
 6:
 	make
-	#./$(PROGRAM) -input $(SCENE_DIR)scene$@.txt -size 300 300 -output $(OUTPUT_DIR)scene$@.ppm -depth 1 7 $(OUTPUT_DIR)depth$@.ppm
+	./$(PROGRAM) -input $(SCENE_DIR)scene$@.txt -size 300 300 -output $(OUTPUT_DIR)scene$@.ppm -depth 1 7 $(OUTPUT_DIR)depth$@.ppm
 
 run:
 	make 1
