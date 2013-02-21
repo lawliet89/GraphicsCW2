@@ -28,7 +28,7 @@ bool Sphere::intersect(const Ray &r, Hit &h)
 	c = delta.Length() * delta.Length() - radius*radius;
 
 	// Now let's calculate the determinant
-	float determinant = b^2-c;
+	float determinant = b*b-c;
 
 	// No real roots = no intersection
 	if (determinant < 0)
