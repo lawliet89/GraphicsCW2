@@ -22,7 +22,7 @@ OrthographicCamera::OrthographicCamera(Vec3f centre, Vec3f direction, Vec3f up, 
 	float dotProduct = this->direction.Dot3(up);
 
 	if (!dotProduct){
-		cout << "Provided up is normal to direction";
+		cout << "Provided up is normal to direction\n";
 		this -> up = up;	// No further processing required
 	}
 	else{
@@ -50,6 +50,8 @@ OrthographicCamera::OrthographicCamera(Vec3f centre, Vec3f direction, Vec3f up, 
 	// calculate horizontal
 	Vec3f::Cross3(horizontal, this -> direction, this -> up);
 	horizontal.Normalize();
+
+	cout << "Horizontal" << horizontal << endl;
 }
 
 // point is in the range (0,0) -> (1,1)
