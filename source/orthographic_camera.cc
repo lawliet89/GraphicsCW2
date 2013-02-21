@@ -13,5 +13,5 @@ OrthographicCamera::OrthographicCamera(Vec3f centre, Vec3f direction, Vec3f up, 
 
 Ray OrthographicCamera::generateRay(Vec2f point)
 {
-
+	return Ray();
 }

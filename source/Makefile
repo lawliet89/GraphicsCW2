@@ -1,42 +1,78 @@
-CC      = c++
-LD      = c++
+# MAKEFILE
 
-CFLAGS  = -Wall -O2 -I. -c
+#-------------------------------------------------------------------------------
+# USER SETTINGS
+#-------------------------------------------------------------------------------
 
-LDFLAGS = -lm
+# Variable that contains the name of the program
+PROGRAM := raycast
 
-INCS = hit.h image.h ray.h scene_parser.h vectors.h \
-	object3d.h group.h camera.h orthographic_camera.h
-
-OBJS =	image.o \
+OBJ_LIST := image.o \
 	scene_parser.o \
 	sphere.o \
 	group.o \
 	orthographic_camera.o \
 	raycast.o
 
-all: raycast
+HEADER_LIST := hit.h image.h ray.h scene_parser.h vectors.h \
+	object3d.h group.h camera.h orthographic_camera.h
+
+
+COMPILER := g++
+CXXFLAGS := -g -pedantic -std=c++0x -Wall -Wextra -Werror=return-type -Wno-reorder
+CFLAGS  := -O2 -I. -c
+LDFLAGS := -lm
+
+#-------------------------------------------------------------------------------
+# ACTUAL TARGETS
+#-------------------------------------------------------------------------------
+$(PROGRAM): $(OBJ_LIST)
+	$(COMPILER) $(OBJ_LIST) -o $(PROGRAM) $(CXXFLAGS) $(LDFLAGS)
+	
+image.o: image.cc $(HEADER_LIST) 
+	$(COMPILER) $(CXXFLAGS) $(CFLAGS) -o $@ $<
+
+orthographic_camera.o: orthographic_camera.cc $(HEADER_LIST)
+	$(COMPILER) $(CXXFLAGS) $(CFLAGS) -o $@ $<
+
+scene_parser.o: scene_parser.cc $(HEADER_LIST) 
+	$(COMPILER) $(CXXFLAGS) $(CFLAGS) -o $@ $<
+
+sphere.o: sphere.cc $(HEADER_LIST) 
+	$(COMPILER) $(CXXFLAGS) $(CFLAGS) -o $@ $<
+
+group.o: group.cc $(HEADER_LIST) 
+	$(COMPILER) $(CXXFLAGS) $(CFLAGS) -o $@ $<
+
+raycast.o: raycast.cc $(HEADER_LIST) 
+	$(COMPILER) $(CXXFLAGS) $(CFLAGS) -o $@ $<
+
+#-------------------------------------------------------------------------------
+# PHONY TARGETS
+#-------------------------------------------------------------------------------
+.PHONY : clean again all git run debug windows
+all: $(PROGRAM)
 
 clean:
-	rm -rf $(OBJS) raycast
+	rm -rf $(OBJ_LIST) $(PROGRAM) *~
 
-image.o: $(INCS) image.cc
-	$(CC) $(CFLAGS) image.cc -o image.o
+again:
+	make clean
+	make
 
-orthographic_camera.o: $(INCS) orthographic_camera.cc
-	$(CC) $(CFLAGS) orthographic_camera.cc -o orthographic_camera.o
+git:
+	make
+	git add .
+	git commit -m "$(m)"
 
-scene_parser.o: $(INCS) scene_parser.cc
-	$(CC) $(CFLAGS) scene_parser.cc -o scene_parser.o
+run:
+	make
+	./$(PROGRAM)
+	
+debug:
+	make
+	gdb $(PROGRAM)
 
-sphere.o: $(INCS) sphere.cc
-	$(CC) $(CFLAGS) sphere.cc -o sphere.o
-
-group.o: $(INCS) group.cc
-	$(CC) $(CFLAGS) group.cc -o group.o
-
-raycast.o: $(INCS) raycast.cc
-	$(CC) $(CFLAGS) raycast.cc -o raycast.o
-
-raycast: $(OBJS)
-	$(LD) $(OBJS) -o raycast $(LDFLAGS)
+# start X server on Cygwin
+windows:
+	startxwin

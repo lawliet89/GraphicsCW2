@@ -1,0 +1,82 @@
+# MAKEFILE
+
+#-------------------------------------------------------------------------------
+# USER SETTINGS
+#-------------------------------------------------------------------------------
+
+# Variable that contains the name of the program
+PROGRAM := raycast
+
+OBJ_LIST := image.o \
+	scene_parser.o \
+	sphere.o \
+	group.o \
+	orthographic_camera.o \
+	raycast.o
+
+HEADER_LIST := hit.h image.h ray.h scene_parser.h vectors.h \
+	object3d.h group.h camera.h orthographic_camera.h
+
+
+COMPILER := g++
+CXXFLAGS := -g -pedantic -std=c++0x -Wall -Wextra -Werror=return-type -Wno-reorder
+CFLAGS  := -O2 -I. -c
+LDFLAGS := -lm
+
+#-------------------------------------------------------------------------------
+# ACTUAL TARGETS
+#-------------------------------------------------------------------------------
+$(PROGRAM): $(OBJ_LIST)
+	$(COMPILER) $(OBJ_LIST) -o $(PROGRAM) $(CXXFLAGS) $(LDFLAGS)
+	
+image.o: $(HEADER_LIST) image.cc
+	$(COMPILER) $(CXXFLAGS) $(CFLAGS) -o $@ $<
+
+orthographic_camera.o: $(HEADER_LIST) orthographic_camera.cc
+	$(COMPILER) $(CXXFLAGS) $(CFLAGS) -o $@ $<
+
+scene_parser.o: $(HEADER_LIST) scene_parser.cc
+	$(COMPILER) $(CXXFLAGS) $(CFLAGS) -o $@ $<
+
+sphere.o: $(HEADER_LIST) sphere.cc
+	$(COMPILER) $(CXXFLAGS) $(CFLAGS) -o $@ $<
+
+group.o: $(HEADER_LIST) group.cc
+	$(COMPILER) $(CXXFLAGS) $(CFLAGS) -o $@ $<
+
+raycast.o: $(HEADER_LIST) raycast.cc
+	$(COMPILER) $(CXXFLAGS) $(CFLAGS) -o $@ $<
+
+#-------------------------------------------------------------------------------
+# PHONY TARGETS
+#-------------------------------------------------------------------------------
+.PHONY : clean again all git run debug windows
+all: $(PROGRAM)
+
+clean:
+	rm -rf $(OBJ_LIST) $(PROGRAM) *~
+
+again:
+	make clean
+	make
+
+git:
+	make
+	git add .
+	git commit -m "$(m)"
+
+run:
+	make
+	./$(PROGRAM)
+	
+debug:
+	make
+	gdb $(PROGRAM)
+
+# start X server on Cygwin
+windows:
+	startxwin
+
+
+
+

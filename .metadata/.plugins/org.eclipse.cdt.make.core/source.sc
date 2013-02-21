@@ -2,6 +2,7 @@
 <?scdStore version="2"?><scannerInfo id="org.eclipse.cdt.make.core.discoveredScannerInfo">
 <instance id="cdt.managedbuild.toolchain.gnu.cygwin.base.513493360;cdt.managedbuild.toolchain.gnu.cygwin.base.513493360.82863093;cdt.managedbuild.tool.gnu.cpp.compiler.cygwin.base.328232098;cdt.managedbuild.tool.gnu.cpp.compiler.input.cygwin.1705964689">
 <collector id="org.eclipse.cdt.make.core.PerProjectSICollector">
+<includePath path="D:/Code/Git/GraphicsCW2/source"/>
 <includePath path="E:\cygwin\lib\gcc\i686-pc-cygwin\4.5.3\include\c++"/>
 <includePath path="E:\cygwin\lib\gcc\i686-pc-cygwin\4.5.3\include\c++\i686-pc-cygwin"/>
 <includePath path="E:\cygwin\lib\gcc\i686-pc-cygwin\4.5.3\include\c++\backward"/>
@@ -223,6 +224,7 @@
 </instance>
 <instance id="cdt.managedbuild.toolchain.gnu.cygwin.base.513493360;cdt.managedbuild.toolchain.gnu.cygwin.base.513493360.82863093;cdt.managedbuild.tool.gnu.c.compiler.cygwin.base.800696090;cdt.managedbuild.tool.gnu.c.compiler.input.cygwin.862436500">
 <collector id="org.eclipse.cdt.make.core.PerProjectSICollector">
+<includePath path="D:/Code/Git/GraphicsCW2/source"/>
 <includePath path="E:\cygwin\lib\gcc\i686-pc-cygwin\4.5.3\include"/>
 <includePath path="E:\cygwin\lib\gcc\i686-pc-cygwin\4.5.3\include-fixed"/>
 <includePath path="E:\cygwin\usr\include"/>

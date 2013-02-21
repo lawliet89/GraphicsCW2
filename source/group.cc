@@ -32,4 +32,6 @@ bool Group::intersect(const Ray &r, Hit &h)
 
   // YOUR CODE HERE.
 
+	return true;
+
 }
