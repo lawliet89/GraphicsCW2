@@ -2,13 +2,13 @@
 #ifndef RAYCAST_H_
 #define RAYCAST_H_
 
-#include <stdlib.h>
-#include <stdio.h>
-#include <string.h>
+#include <cstdlib>
+#include <cstdio>
+#include <cstring>
 #include <iostream>
 
-#include <math.h>
-#include <assert.h>
+#include <cmath>
+#include <cassert>
 
 using namespace std;
 

@@ -5,20 +5,18 @@
 #define GROUP_H_
 
 #include "raycast.h"
-
+#include <vector>
 
 class Group : public Object3D{
 
-  // An array of pointers to objects.
-  Object3D **_object;
+  // A vector of pointers to objects
+  vector<Object3D*> objects;
 
-  // The number of objects in the group.
-  int _count;
 
 public:
 
   // Default constructor.
-  Group(){this->_object = NULL; this->_count = 0;};
+  Group(){}
 
   // Constructor for a group of n objects.
   Group(int n);

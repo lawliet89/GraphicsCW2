@@ -14,6 +14,8 @@ public:
   // corners of the image.  Implemented in subclasses.
   virtual Ray generateRay(Vec2f point) = 0;
 
+	// Virtual destructor
+	virtual ~Camera(){}
 };
 
 #endif /* CAMERA_H_ */
